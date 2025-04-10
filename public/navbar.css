@@ -1,0 +1,182 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f2f5;
+ 
+  
+  }
+
+/* Navbar */
+.navbar {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #323232;
+  padding: 0 20px;
+  position: fixed !important; /* Ensures navbar stays at the top */
+  top: 0 !important;
+  left: 0;
+  z-index: 1000;
+  border-radius: 0;
+  margin-bottom: 100px; /* Ensure no rounding causes movement */
+}
+
+
+
+/* Logo */
+.logo {
+  color: #EDEDED;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Navbar Links */
+.navbar a {
+  text-decoration: none;
+  color: #EDEDED;
+  font-size: 1rem;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu li {
+  list-style: none;
+  margin: 0 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu li a {
+  text-decoration: none;
+  margin-left: 5px;
+
+}
+
+.menu li i {
+  color: #ffffff;
+  margin-right: 5px;
+
+}
+.menu li :hover{
+  color: rgb(199, 153, 48);
+  
+}
+.menu li button{
+  background-color: transparent;
+  border: 1px solid white;
+  color:  white;
+}
+.menu li button:hover{
+  color: rgb(199, 153, 48);
+  border: 1px solid  rgb(199, 153, 48);
+}
+
+
+/* Buttons */
+.btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+  color:  rgb(255, 255, 255);
+  background-color: transparent;
+  border: 1px solid white;
+  height: 40px;
+  width: auto;
+}
+
+
+.logout-btn {
+  background: #FF4B4B;
+  color: white;
+  border: none;
+}
+
+.logout-btn:hover {
+  background: #C82333;
+  border: 1px solid white !important;
+  color: white !important;
+}
+#lgtbtn{
+  background: #FF4B4B;
+}
+#lgtbtn:hover{
+  background: #C82333;
+  border: 1px solid white !important;
+  color: white !important;
+
+}
+
+
+/* Search Bar */
+.searchbox {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  width: 250px;
+  border: none;
+}
+
+.searchbox input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  background: transparent;
+}
+
+.searchbox i {
+  color: #007BFF;
+  margin-right: 8px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  margin: 4px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    background: #323232;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

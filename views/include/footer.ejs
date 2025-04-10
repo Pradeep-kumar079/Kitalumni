@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractive Footer</title>
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Students</a></li>
+                    <li><a href="#">Alumnis</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>Email: kitalumini26@gmail.com</li>
+                    <li>Phone: +91 9353198519</li>
+                    <li>Address: Tiptur 572201</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 YourCompany. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script >
+      // Smooth hover effect on social icons
+document.querySelectorAll(".social-icon").forEach(icon => {
+  icon.addEventListener("mouseover", () => {
+      icon.style.transform = "scale(1.2)";
+  });
+  icon.addEventListener("mouseout", () => {
+      icon.style.transform = "scale(1)";
+  });
+});
+
+console.log("Footer loaded successfully!");
+    </script>
+</body>
+</html>

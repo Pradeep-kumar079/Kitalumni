@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/profile.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/FontAwesome kit.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <form action="/profile/<%= user._id %>" method="post" enctype="multipart/form-data">
+    <div class="profilecontainer">
+      
+      <div class="imgusername">
+        <div class="profileimg" >
+         <% if(user.profileimg) {%>
+          <img id="profilePreview" src="/upload/<%= user.profileimg %>" >
+          <% } else { %>
+            <img id="profilePreview" src="/upload/defaultimg.jpeg" >
+          <% } %>
+          <div class="role">
+            <!-- <p> <%= user.role %></p> -->
+            <span class="badge text-bg-success"> <%= user.role %></span>
+          </div>
+
+        </div>
+        <div class="rowcontain">
+          <div class="username">
+            <h3><%= user.username %></h3>
+          </div>
+          <div class="connectioncount">
+            Connections: <%= connectionCount %>
+          </div>
+        </div>
+        
+        
+      </div>
+    
+      
+      
+  
+     
+      
+      <div class="biocontainer">
+        <p>
+           <%= user.bio %>
+        </p>
+      </div>
+      <div class="editdiv">
+        <% if (sessionUserId && sessionUserId.toString() === user._id.toString()) { %>
+          <a href="/profile/<%= user._id %>/edit" class="btn btn-primary">Edit Profile</a>
+      <% } %>
+        <% if (isConnected) { %>
+            <a href="/messages/<%= user._id %>" class="btn btn-success">Message</a>
+        <% } %>
+    </div>
+    
+    
+      
+  
+    </div>
+    <div class="postcontainer">
+      <h3>Posts</h3>
+      <div class="allposts">
+          <% allposts.forEach(post => { %>  <!-- Loop through allposts -->
+              <div>
+                  <% if (post.postimg) { %>
+                      <img src="/upload/<%= post.postimg %>" alt="Post Image">
+                  <% } else if (post.videopost) { %>
+                      <video controls>
+                          <source src="/upload/<%= post.videopost %>" type="video/mp4">
+                          Your browser does not support the video tag.
+                      </video>
+                  <% } else { %>
+                     <div class="postbox">
+                      <p><%= post.title  %></p>
+                      <p><%= post.description  %></p>
+                      <p><%= post.postedAt ? post.postedAt.toLocaleDateString() : "Date not available" %></p>
+
+                     </div>
+                  <% } %>
+              </div>
+          <% }) %>
+      </div>
+  </div>
+  
+  </form>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const img = document.querySelector("#profilePreview");
+      const input = document.querySelector("#profileImgInput");
+  
+      if (input) {
+        input.addEventListener("change", () => {
+          if (input.files && input.files[0]) {
+            img.src = URL.createObjectURL(input.files[0]); // Preview selected image
+          }
+        });
+      }
+    });
+  </script>
+  
+  
+</body>
+</html>

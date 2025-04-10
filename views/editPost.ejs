@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/editpost.css">
+</head>
+<body>
+  <form action="/edit/<%= post._id %>" method="POST">
+    <div class="edit">
+      <h3>Edit post</h3>
+    </div>
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="<%= post.title %>" required>
+    <label for="description"> Description</label>
+    <textarea name="description" id="description" required><%= post.description %></textarea>
+    <button type="submit">Update Post</button>
+  </form>
+  
+</body>
+</html>

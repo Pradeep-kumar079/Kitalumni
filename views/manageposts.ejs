@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Posts</title>
+  <link rel="stylesheet" href="/managepost.css">
+</head>
+<body>
+  <h1>Manage Posts</h1>
+
+  <table border="1">
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Author</th>
+      <th>Category</th>
+      <th>Created</th>
+      <th>Actions</th>
+    </tr>
+    <% posts.forEach(post => { %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.description.substring(0, 50) %>...</td>
+        <td><%= post.user?.username %></td>
+        <td><%= post.user?.usn || 'N/A' %></td> <!-- Replaced category with USN -->
+        <td><%= post.createdAt.toDateString() %></td>
+        <td>
+          <a href="/admin/posts/view/<%= post._id %>">View</a> |
+          <form action="/admin/posts/delete/<%= post._id %>" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('Delete this post?')">Delete</button>
+          </form>
+        </td>
+      </tr>
+      
+    <% }) %>
+  </table>
+  
+</body>
+</html>

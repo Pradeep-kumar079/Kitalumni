@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+   <style>
+    /* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Centered Container */
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+/* Heading */
+h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Label */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Input Field */
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="email"]:focus {
+  border-color: #007bff;
+}
+
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+ 
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  form {
+      padding: 15px;
+  }
+}
+
+   </style>
+</head>
+<body>
+  <form action="/reset-password/<%= resetToken %>" method="POST" class="form">
+    <label for="newPassword">Enter New Password:</label>
+    <input type="password" name="newPassword" required>
+    <button type="submit">Reset Password</button>
+</form>
+
+</body>
+</html>

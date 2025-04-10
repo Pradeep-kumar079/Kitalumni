@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internship Upload</title>
+  <link rel="stylesheet" href="/uploadintern.css">
+  <style>
+     
+  </style>
+</head>
+<body>
+  <form action="/internships" method="POST" enctype="multipart/form-data">
+    <h3>Upload Internship Information</h3>
+
+    <!-- Company -->
+    <label>Company</label>
+    <input type="text" name="company" required>
+
+    <!-- Role -->
+    <label>Intern Role</label>
+    <input type="text" name="internRole">
+
+    <!-- Duration -->
+    <label>Duration</label>
+    <input type="text" name="duration">
+
+    <!-- Stipend -->
+    <label>Stipend</label>
+    <input type="text" name="stipend">
+
+    <!-- Start Date -->
+    <label>Start Date</label>
+    <input type="date" name="startDate">
+
+    <!-- End Date -->
+    <label>End Date</label>
+    <input type="date" name="endDate">
+
+    <!-- Optional Media -->
+    <label>Image (optional)</label>
+    <input type="file" name="image" accept="image/*">
+
+    <label>Video (optional)</label>
+    <input type="file" name="video" accept="video/*">
+
+    <!-- Intern Students -->
+    <h4>Intern Students</h4>
+    <div id="students-container">
+      <div class="student-entry">
+        <input type="text" name="studentNames[]" placeholder="Name" required>
+        <input type="text" name="studentRolls[]" placeholder="Roll No" required>
+        <input type="text" name="studentBranches[]" placeholder="Branch" required>
+      </div>
+    </div>
+
+    <button type="button" onclick="addStudent()">+ Add More Students</button><br><br>
+    <button type="submit">Upload Internship</button>
+  </form>
+
+  <script>
+    function addStudent() {
+      const container = document.getElementById('students-container');
+      const entry = document.createElement('div');
+      entry.className = 'student-entry';
+      entry.innerHTML = `
+        <input type="text" name="studentNames[]" placeholder="Name" required>
+        <input type="text" name="studentRolls[]" placeholder="Roll No" required>
+        <input type="text" name="studentBranches[]" placeholder="Branch" required>
+      `;
+      container.appendChild(entry);
+    }
+  </script>
+</body>
+</html>

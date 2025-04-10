@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add posts</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+
+<!-- <div class="navbar">
+  <%- include("include/navbar") %>
+</div> -->
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+  
+  <div class="tabs">
+    <div class="tab active" data-tab="tab1" class="btn btn-secondary ">Create a post</div>
+    <!-- <div class="tab" data-tab="tab2">Image</div>
+    <div class="tab" data-tab="tab3">video</div> -->
+  </div>
+
+<div class="tab-content">
+  <!----------------------this is first div-->
+    <div class="content active" id="tab1">
+      <div class="firstdiv" >
+        <form action="/upload/text" method="post" >
+          <div class="uploadcontainer">
+            <h3 class="postag">Post your questions and problems</h3>
+            <div class="uploadbox">
+      
+                <div class="row mb-3">
+                  <label for="Title" class="col-sm-2 col-form-label">Title</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Title" name="title">
+                  </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                  <label for="img" class="col-sm-2 col-form-label">Image(optinal) </label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="img" name="postimg" accept="image/*">
+                  </div>
+                </div> 
+                
+                <br>
+                <div class="row mb-3">
+                  <label for="img" class="col-sm-2 col-form-label">video(optinal) </label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="img" name="videopost" accept="video/*">
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="bio" class="col-sm-2 col-form-label">Description</label>
+                  <div class="col-sm-10">
+                  <textarea type="text" class="form-control" id="Description" placeholder="Write description about problem" name="description" style="height: 60px;"></textarea>
+                  </div>
+                </div>
+                <div class="tags-container">
+                  <input type="text" id="tagInput" placeholder="Add a hashtag..." name="hashtags">
+                  <div class="tags" id="tagList">
+                      <!-- Tags will be dynamically added here -->
+                  </div>
+              </div>
+              
+                <br>
+                <button type="submit" class="btn btn-secondary " id="postbtn">Post</button>
+            </div>
+          </div>
+      
+      <!-- </form> -->
+
+
+
+      </div>
+    </div>
+    <!-- ----------------------------this is second div
+    <div class="content" id="tab2">
+      <div class="second">
+
+          <form action="/upload/image" method="post" enctype="multipart/form-data">  
+          <div class="uploadcontainer">
+            <h3 class="postag">Post your questions through images</h3>
+            <div class="uploadbox">
+      
+                <div class="row mb-3">
+                  <label for="Title" class="col-sm-2 col-form-label">Title</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Title" name="title">
+                  </div>
+                </div>
+      <br>
+                <div class="row mb-3">
+                  <label for="img" class="col-sm-2 col-form-label">Image </label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="img" name="postimg" accept="image/*">
+                  </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                  <label for="bio" class="col-sm-2 col-form-label">Description</label>
+                  <div class="col-sm-10">
+                  <textarea type="text" class="form-control" id="Description" placeholder="Write description about problem" name="description" style="height: 60px;"></textarea>
+                  </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success" id="postbtn2">Post</button>
+            </div>
+          </div>
+      
+       </form> 
+
+      </div>
+    </div> -->
+
+    <!----------------this is third div------------->
+    <!-- <div class="content" id="tab3">
+      <div class="third">
+        <form action="/upload/videos" method="post" enctype="multipart/form-data">
+          <div class="uploadcontainer">
+            <h3 class="postag">Post your video</h3>
+            <div class="uploadbox">
+      
+                <div class="row mb-3">
+                  <label for="Title" class="col-sm-2 col-form-label">Title</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Title" name="title">
+                  </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                  <label for="img" class="col-sm-2 col-form-label">video </label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="img" name="videopost" accept="video/*">
+                  </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                  <label for="bio" class="col-sm-2 col-form-label">Description</label>
+                  <div class="col-sm-10">
+                  <textarea type="text" class="form-control" id="Description" placeholder="Write description about problem" name="description" style="height: 60px;"></textarea>
+                  </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success" id="postbtn3">Post</button>
+            </div>
+          </div>
+      
+      </form>
+        
+      </div>
+    </div> -->
+</div>
+
+</form>
+
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.content');
+
+  tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+          const target = document.getElementById(tab.dataset.tab);
+
+          tabs.forEach(t => t.classList.remove('active'));
+          contents.forEach(c => c.classList.remove('active'));
+
+          tab.classList.add('active');
+          target.classList.add('active');
+      });
+  });
+</script>
+</body>
+</html>

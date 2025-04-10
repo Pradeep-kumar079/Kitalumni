@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Details</title>
+<script src="https://use.fontawesome.com/fe459689b4.js"></script>
+<link rel="stylesheet" href="/post.css">
+
+
+</head>
+<body>
+    <div class="post-container">
+        <!-- Post Header -->
+        <div class="post-header">
+            <p class="post-title"><%= post.title %></p>
+
+            <!-- <p class="post-user">Posted by: <%= post.username %></p> -->
+            <p class="post-description"><%= post.description %></p>
+        </div>
+    
+        <!-- Post Media -->
+        <div class="post-img">
+            <% if (post.postimg) { %>
+                <img src="/upload/<%= post.postimg %>" alt="Post Image">
+            <% } %>
+            
+            <% if (post.videopost) { %>
+                <video src="/upload/<%= post.videopost %>" controls autoplay></video>
+            <% } %>
+        </div>
+    
+        <!-- Post Actions -->
+        <div class="post-actions">
+            <button class="like-btn" data-post-id="<%= post._id %>">
+                <i class="fa fa-thumbs-up"></i>
+                <span class="like-count"><%= post.likes ? post.likes.length : 0 %></span>
+              </button>
+            <button onclick="sharePost()"><i class="fa fa-share"></i> Share</button>
+            <button onclick="reportPost()"><i class="fa fa-flag"></i> Report</button>
+        </div>
+    
+        <!-- Suggestions Section -->
+        <div class="all-comments">
+            <h3>Suggestions</h3>
+            <% if (suggestions && suggestions.length > 0) { %>
+                <ul>
+                    <% suggestions.forEach(suggestion => { %>
+                        <li><strong><%= suggestion.username %>:</strong> <%= suggestion.text %></li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No suggestions yet.</p>
+            <% } %>
+        </div>
+    </div>
+    
+    <div class="suggestion-form">
+        <form id="suggestionForm" action="/post/<%= post._id %>/suggestion" method="post">
+            <label for="comment">Suggestions:</label>
+            <textarea id="comment" name="suggestion" placeholder="Write your suggestion here..." required></textarea>
+            <button type="submit">Comment</button>
+            <p id="warning" style="color: red; display: none; padding: 5px;">Your comment is too toxic!</p>
+        </form>
+    </div>
+
+<script>
+    // Like Button with Persistent Storage
+   
+    const loggedInUserId = "<%= post.user._id %>";
+    document.querySelectorAll(".like-btn").forEach(button => {
+        button.addEventListener("click", async function () {
+          const postId = this.getAttribute("data-post-id");
+    
+          if (!loggedInUserId) {
+            alert("You must be logged in to like posts.");
+            return;
+          }
+    
+          try {
+            const response = await fetch("/like", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ postId, userId: loggedInUserId }),
+            });
+    
+            const data = await response.json();
+    
+            if (data.success) {
+              const likeCountSpan = this.querySelector(".like-count");
+              likeCountSpan.textContent = data.likes;
+            } else {
+              alert("Failed to like post.");
+            }
+          } catch (error) {
+            console.error("Error liking post:", error);
+          }
+        });
+      });
+
+
+      
+    // Report Post
+    function reportPost() {
+        alert("This post has been reported.");
+    }
+
+    document.getElementById("suggestionForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const commentText = document.getElementById("comment").value;
+        const apiKey = "AIzaSyDaP2qP46Ackt7OQ1Rg2OaOfhHrDv12Do8"; // Replace with your actual API key
+        const url = `https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=${apiKey}`;
+
+        const requestBody = {
+            comment: { text: commentText },
+            languages: ["en"],
+            requestedAttributes: { TOXICITY: {} }
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestBody)
+            });
+
+            const data = await response.json();
+            const toxicityScore = data.attributeScores.TOXICITY.summaryScore.value;
+            
+            console.log("Toxicity Score:", toxicityScore);
+
+            if (toxicityScore > 0.75) { 
+                document.getElementById("warning").style.display = "block";
+            } else {
+                this.submit(); // Submit form if the comment is not toxic
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error checking toxicity. Please try again.");
+        }
+    });
+</script>
+
+</body>
+</html>

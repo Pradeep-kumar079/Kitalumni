@@ -1,0 +1,93 @@
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  th, td {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    background-color: #2c3e50;
+    color: #fff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  a {
+    color: #3498db;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  button {
+    padding: 6px 12px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #c0392b;
+  }
+
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    tr {
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    td {
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td::before {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      width: 45%;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    td:nth-child(1)::before { content: "Title"; }
+    td:nth-child(2)::before { content: "Description"; }
+    td:nth-child(3)::before { content: "Author"; }
+    td:nth-child(4)::before { content: "Category"; }
+    td:nth-child(5)::before { content: "Created"; }
+    td:nth-child(6)::before { content: "Actions"; }
+  }

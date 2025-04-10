@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Edit User</h1>
+<form action="/admin/user/edit/<%= user._id %>" method="POST">
+  <p>Name: <%= user.username %></p>
+  <p>Email: <%= user.email %></p>
+  
+  <label for="role">Role:</label>
+  <select name="role" id="role">
+    <option value="student" <%= user.role === 'student' ? 'selected' : '' %>>Student</option>
+    <option value="alumni" <%= user.role === 'alumni' ? 'selected' : '' %>>Alumni</option>
+    <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Admin</option>
+  </select>
+
+  <br><br>
+  <button type="submit">Update User</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+
+  /* form {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  } */
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  th, td {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    text-align: left;
+    background-color: none;
+  }
+
+  th {
+    background-color: #444;
+    color: #fff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  a {
+    color: #007BFF;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  button {
+    padding: 6px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #c82333;
+  }
+
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    tr {
+      margin-bottom: 15px;
+    }
+
+    td {
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td::before {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      width: 45%;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    td:nth-child(1)::before { content: "Name"; }
+    td:nth-child(2)::before { content: "Email"; }
+    td:nth-child(3)::before { content: "Role"; }
+    td:nth-child(4)::before { content: "Actions"; }
+  }

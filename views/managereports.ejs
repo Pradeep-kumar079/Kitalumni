@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Reports</title>
+</head>
+<body>
+  <h1>Admin - Manage Reports</h1>
+ 
+
+  <% if (reports.length > 0) { %>
+    <% reports.forEach(post => { %>
+      <% post.reports.forEach(report => { %>
+        <table border="1" style="margin-bottom: 20px;">
+          <tr>
+            <th>Post Title</th>
+            <td><%= post.title %></td>
+          </tr>
+          <tr>
+            <th>Post Author</th>
+            <td><%= post.user?.username || 'Unknown' %></td>
+          </tr>
+          <tr>
+            <th>Reported By</th>
+            <td><%= report.userId?.username || 'Unknown' %></td>
+          </tr>
+          <tr>
+            <th>Reason</th>
+            <td><%= report.reason %></td>
+          </tr>
+          <tr>
+            <th>Actions</th>
+            <td>
+              <a href="/admin/posts/edit/<%= post._id %>">Edit Post</a> |
+              <form action="/admin/posts/delete/<%= post._id %>" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('Delete this post?')">Delete</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+      <% }) %>
+    <% }) %>
+  <% } else { %>
+    <p>No reports found.</p>
+  <% } %>
+  
+</body>
+</html>

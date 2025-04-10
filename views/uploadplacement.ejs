@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placement Upload</title>
+  <link rel="stylesheet" href="/uploadplace.css">
+  <style>
+    
+  </style>
+</head>
+<body>
+  <form action="/placement" method="POST" enctype="multipart/form-data">
+    <h3>Upload Placement Information</h3>
+
+    <label>Company</label>
+    <input type="text" name="company" required>
+
+    <label>Role</label>
+    <input type="text" name="role">
+
+    <label>Package</label>
+    <input type="text" name="package">
+
+    <label>Placement Date</label>
+    <input type="date" name="placementDate">
+
+    <label>Image (optional)</label>
+    <input type="file" name="image" accept="image/*">
+
+    <label>Video (optional)</label>
+    <input type="file" name="video" accept="video/*">
+
+    <h4>Placed Students</h4>
+    <div id="students-container">
+      <div class="student-entry">
+        <input type="text" name="studentNames[]" placeholder="Name" required>
+        <input type="text" name="studentRolls[]" placeholder="Roll No" required>
+        <input type="text" name="studentBranches[]" placeholder="Branch" required>
+      </div>
+    </div>
+
+    <button type="button" onclick="addStudent()">+ Add More Students</button><br><br>
+    <button type="submit">Upload Placement</button>
+  </form>
+
+  <script>
+    function addStudent() {
+      const container = document.getElementById('students-container');
+      const entry = document.createElement('div');
+      entry.className = 'student-entry';
+      entry.innerHTML = `
+        <input type="text" name="studentNames[]" placeholder="Name" required>
+        <input type="text" name="studentRolls[]" placeholder="Roll No" required>
+        <input type="text" name="studentBranches[]" placeholder="Branch" required>
+      `;
+      container.appendChild(entry);
+    }
+  </script>
+</body>
+</html>

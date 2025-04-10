@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 700px;
+}
+
+h3, h4 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.student-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.student-entry input {
+  margin-bottom: 0;
+}
+
+button[type="button"],
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+  .student-entry {
+    grid-template-columns: 1fr;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

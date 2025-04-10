@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - <%= year %></title>
+    <style>
+      /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #ffffff;
+    text-align: center;
+}
+
+/* Title Section */
+.h2 {
+    background: linear-gradient(135deg, #1e1e1e, #444);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    max-width: 900px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+/* Branch Section */
+.branch {
+    color: rgb(84, 77, 77);
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* User Table */
+.user-table {
+    width: 100%;
+    max-width: 90%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.user-table th, .user-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.user-table th {
+    background: #acb1b7;
+    color: white;
+}
+
+/* Profile Image */
+.user-table td img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+/* Connection Buttons */
+.connect-btn {
+    padding: 7px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+}
+
+.connect-btn.connect { background-color: rgb(0, 150, 0); }
+.connect-btn.disconnect { background-color: rgb(200, 0, 0); }
+.connect-btn.myself { background-color: rgb(208, 108, 8); }
+
+/* No Users Message */
+.no {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    background-color: rgb(179, 63, 63);
+    color: white;
+    height: 40px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    margin: 20px auto;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Back Button */
+.back-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.back-btn:hover { background: darkgray; }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .h2, .branch { width: 95%; }
+    .user-table { max-width: 95%; }
+}
+
+@media (max-width: 768px) {
+    .h2, .branch { font-size: 16px; width: 90%; }
+    .user-table th, .user-table td { padding: 10px; font-size: 12px; }
+    .user-table td img { width: 45px; height: 45px; }
+    .connect-btn { font-size: 12px; padding: 6px 10px; }
+}
+
+@media (max-width: 600px) {
+    .h2, .branch { font-size: 14px; }
+    .user-table th, .user-table td { font-size: 11px; padding: 8px; }
+    .user-table td img { width: 40px; height: 40px; }
+    .connect-btn { font-size: 11px; padding: 5px 8px; }
+}
+
+@media (max-width: 480px) {
+    .h2, .branch { font-size: 12px; }
+    .user-table { max-width: 100%; overflow-x: auto; display: block; }
+    .user-table th, .user-table td { font-size: 10px; padding: 6px; }
+    .user-table td img { width: 35px; height: 35px; }
+    .connect-btn { font-size: 10px; padding: 4px 6px; }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="h2">
+        <h2>Alumni from Graduate Year: <%= year %></h2>
+    </div>
+    <% if (Object.keys(users).length > 0) { %>
+        <% Object.entries(users).forEach(([branchName, userList]) => { %>
+            <div class="branch">
+                <h3><%= branchName %> Branch</h3>
+            </div>
+    
+            <% if (userList.length > 0) { %>
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Profile</th>
+                            <th>Username</th>
+                            <th>Usn</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% userList.forEach((user, index) => { %>
+                            <tr>
+                                <td><%= index + 1 %></td>
+                                <td>
+                                    <div style="position: relative; display: inline-block;">
+                                        <% if (user.profileimg) { %>
+                                            <img src="/upload/<%= user.profileimg %>" alt="Profile Picture">
+                                        <% } %>
+    
+                                        <% 
+                                            // Ensure connections exist
+                                            currentUser.connections = currentUser.connections || []; 
+                    
+                                            // Convert all connection IDs to string for comparison
+                                            const connectedUsers = currentUser.connections.map(conn => conn._id ? conn._id.toString() : conn);
+                                            const userIdStr = user._id.toString();
+                                            const isConnected = connectedUsers.includes(userIdStr);
+                                        %>
+    
+                                        <% if (isConnected) { %>
+                                            <a href="/profile/<%= user._id %>" style="
+                                                position: absolute;
+                                                bottom: 5px;
+                                                left: 50%;
+                                                transform: translateX(-50%);
+                                                background-color: blue;
+                                                color: white;
+                                                padding: 5px 10px;
+                                                border-radius: 5px;
+                                                text-decoration: none;
+                                                font-size: 12px;
+                                            ">View Profile</a>
+                                        <% } %>
+                                    </div>
+                                </td>
+                                <td><%= user.username %></td>
+                                <td><%= user.usn %></td>
+                                <td><%= user.email %></td>
+                                <td>
+                                    <% const isCurrentUser = userIdStr === currentUser._id.toString(); %>
+    
+                                    <% if (isCurrentUser) { %>
+                                        <button type="button" class="connect-btn myself">Myself</button>
+                                    <% } else { %>
+                                        <form action="<%= isConnected ? '/disconnect' : '/connect' %>" method="post">
+                                            <input type="hidden" name="receiverId" value="<%= user._id %>">
+                                            
+                                            <% if (isConnected) { %>
+                                                <button type="submit" class="connect-btn disconnect">Disconnect</button>
+                                            <% } else { %>
+                                                <button type="submit" class="connect-btn connect">Connect</button>
+                                            <% } %>
+                                        </form>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <div class="no">
+                    <p>No users found in this branch.</p>
+                </div>
+            <% } %>
+        <% }); %>
+    <% } else { %>
+        <div class="no">
+            <p>No users found for this year.</p>
+        </div>
+    <% } %>
+    
+    <a href="/home" class="back-btn">Back to Graduate Years</a>
+
+</body>
+</html>

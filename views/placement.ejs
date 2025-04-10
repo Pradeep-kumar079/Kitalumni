@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Placement Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .item {
+      width: 320px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .item h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+
+    .item img, .item video {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .item p {
+      margin: 0;
+      color: #555;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Placement Gallery</h2>
+
+  <div class="gallery">
+
+    <div class="item">
+      <h3>Campus Interviews</h3>
+      <img src="https://images.unsplash.com/photo-1596079890749-460d6d1cfb34" alt="">
+      <p>Top recruiters from various companies conducted on-campus interviews and selection rounds.</p>
+    </div>
+
+    <div class="item">
+      <h3>Placement Orientation</h3>
+      <video controls src="https://www.w3schools.com/html/movie.mp4"></video>
+      <p>Students getting guided by placement officers about job interview preparation and resume building.</p>
+    </div>
+
+    <div class="item">
+      <h3>Offer Letter Celebration</h3>
+      <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df" alt="">
+      <p>Placed students sharing their success stories and receiving offer letters with joy and pride.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

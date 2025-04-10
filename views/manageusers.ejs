@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Users</title>
+  <link rel="stylesheet" href="/manageusers.css">
+</head>
+<body>
+  <h1 style="text-align: center;">Manage Users</h1>
+
+  <!-- Search Filters -->
+  <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+    <input type="text" id="usernameSearch" placeholder="Search by Username" style="padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+    <input type="text" id="emailSearch" placeholder="Search by Email" style="padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+    <input type="number" id="graduateYearSearch" placeholder="Search by Graduate Year" style="padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+    <button onclick="clearFilters()" style="padding: 8px 16px;">Clear</button>
+  </div>
+
+  <!-- User Table -->
+  <form action="/admin/users" method="post">
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>USN</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Graduate Year</th>
+        <th>Actions</th>
+      </tr>
+      <% users.forEach(user => { %>
+        <tr data-graduate="<%= user.graduate %>">
+          <td><%= user.username %></td>
+          <td><%= user.usn %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td><%= user.graduate %></td>
+          <td>
+            <a href="/admin/user/edit/<%= user._id %>">Edit</a> |
+            <form action="/admin/user/delete/<%= user._id %>" method="POST" style="display:inline; ">
+              <button type="submit" onclick="return confirm('Delete this user?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </table> 
+  </form>
+
+  <script>
+    const usernameInput = document.getElementById("usernameSearch");
+    const emailInput = document.getElementById("emailSearch");
+    const graduateInput = document.getElementById("graduateYearSearch");
+
+    function filterUsers() {
+      const username = usernameInput.value.toLowerCase();
+      const email = emailInput.value.toLowerCase();
+      const gradYear = graduateInput.value;
+
+      const rows = document.querySelectorAll("table tr:not(:first-child)");
+
+      rows.forEach(row => {
+        const nameCell = row.children[0]?.textContent?.toLowerCase() || "";
+        const emailCell = row.children[1]?.textContent?.toLowerCase() || "";
+        const gradCell = row.getAttribute('data-graduate') || "";
+
+        const matchesUsername = nameCell.includes(username);
+        const matchesEmail = emailCell.includes(email);
+        const matchesGrad = gradYear === "" || gradCell === gradYear;
+
+        row.style.display = (matchesUsername && matchesEmail && matchesGrad) ? "" : "none";
+      });
+    }
+
+    function clearFilters() {
+      usernameInput.value = '';
+      emailInput.value = '';
+      graduateInput.value = '';
+      filterUsers();
+    }
+
+    usernameInput.addEventListener("input", filterUsers);
+    emailInput.addEventListener("input", filterUsers);
+    graduateInput.addEventListener("input", filterUsers);
+  </script>
+</body>
+</html>
