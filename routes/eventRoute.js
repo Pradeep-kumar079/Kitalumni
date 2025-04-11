@@ -5,7 +5,7 @@ const upload = multer({ dest: 'upload/' });
 
 const Usermodel = require('../model/usermodel');
 const Postmodel = require('../model/postmodel');
-const Event = require('../model/eventmodel'); // <-- Import Event model
+const Event = require('../model/eventSchema'); // <-- Import Event model
 
 // Render event upload page
 router.get('/event', (req, res) => {

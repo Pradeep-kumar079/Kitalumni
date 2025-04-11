@@ -15,7 +15,7 @@ const Message = require('./model/message');
 const Suggestion = require("./model/Suggestion");
 require('dotenv').config();
 const ejs = require("ejs");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const fs = require("fs");
 const uuid = require("uuid").v4();
@@ -66,13 +66,11 @@ const { isAdmin } = require('./middleware/isAdmin');
 
 
 
-
-
-
-
 // Load environment variables
 const mongoURI = process.env.MONGO_URI;
+ 
 const sessionSecret = process.env.SESSION_SECRET;
+
  
 
 const store = new MongoDBStore({
@@ -85,18 +83,14 @@ store.on('error', function(error) {
   console.error('MongoDB session store error:', error);
 });
 
-
 // Async MongoDB connection with error handling
-(async () => {
-  try {
-    await mongoose.connect(mongoURI);
-    console.log('MongoDB Connected!');
-  } catch (err) {
+mongoose.connect(mongoURI)
+  .then(() => {
+    console.log('MongoDB connected ');
+  })
+  .catch(err => {
     console.error('MongoDB Connection Error:', err);
-    process.exit(1); 
-  }
-})();
-
+  });
 
 
 // Session middleware with enhanced security
@@ -105,14 +99,56 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: sessionSecret,
-  store:store,
+  store: store,
   cookie: {
     secure: process.env.NODE_ENV === "production",
     httpOnly: true,
     sameSite: "strict",
-    expires: 600000
+    expires: 600000 // 10 minutes
   }
 }));
+// const sessionSecret = process.env.SESSION_SECRET;
+ 
+
+// const store = new MongoDBStore({
+//   uri: mongoURI,
+//   collection: 'sessions',
+// });
+
+// // Error handling for MongoDBStore
+// store.on('error', function(error) {
+//   console.error('MongoDB session store error:', error);
+// });
+
+
+// // Async MongoDB connection with error handling
+
+// mongoose.connect(mongoURI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// })
+// .then(() => {
+//   console.log('MongoDB connected ✅');
+// })
+// .catch(err => {
+//   console.error('MongoDB Connection Error:', err);
+// });
+
+
+// // Session middleware with enhanced security
+// app.use(cookieParser());
+// app.use(session({
+//   resave: false,
+//   saveUninitialized: false,
+//   secret: sessionSecret,
+//   store:store,
+//   cookie: {
+//     secure: process.env.NODE_ENV === "production",
+//     httpOnly: true,
+//     sameSite: "strict",
+//     expires: 600000
+//   }
+// }));
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));

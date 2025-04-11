@@ -12,7 +12,6 @@
   "description": "",
   "dependencies": {
     "axios": "^1.8.4",
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "compression": "^1.8.0",
     "connect-flash": "^0.1.1",
@@ -31,6 +30,7 @@
     "gridfs-stream": "^1.1.1",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
+    "mongodb": "^6.0.0",
     "mongoose": "^8.12.1",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.10.0",

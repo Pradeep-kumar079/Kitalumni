@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const defaultImg = "upload/defaultimg.png"; // Default image path
+const defaultImg = "upload/defaultimg.png";
+const bcrypt = require('bcryptjs');
+ // Default image path
 
 const userSchema = new mongoose.Schema({
   username: {

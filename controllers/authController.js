@@ -1,8 +1,10 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 const Usermodel = require("../model/usermodel");
 const Tokenmodel = require("../model/Tokenmodel");
 const crypto = require("crypto");
-const transporter = require("../config/mail"); // adjust this if needed
+const transporter = require("../config/mail");
+ 
+ // adjust this if needed
 
 
 // ----------------- Render Register Page -------------------- //

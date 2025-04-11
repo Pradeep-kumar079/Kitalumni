@@ -3,7 +3,9 @@ const Usermodel = require("../model/usermodel");
 const postmodel = require("../model/postmodel");
 const { connection } = require("mongoose");
 const currentUser = require("../middleware/isAuth");
-const Event = require("../model/eventmodel");
+const Event = require("../model/eventSchema");
+const bcrypt = require('bcryptjs');
+
 
 // 🔁 Helper: Load common home data
 const loadHomeData = async () => {

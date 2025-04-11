@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Placement = require("../model/placementmodel");
-const Internship = require("../model/internshipmodel");
+const Internship = require("../model/internshipSchema");
 const multer = require("multer");
 const upload = multer({ dest: "upload/" });
-const Event = require("../model/eventmodel");
+const Event = require("../model/eventSchema");
 const Usermodel = require("../model/usermodel");
 const Postmodel = require("../model/postmodel");
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Event = require('../model/eventmodel');
+const Event = require('../model/eventSchema');
 const Usermodel = require('../model/usermodel');
 const Postmodel = require('../model/postmodel');
 const placements = require('../model/placementmodel');

@@ -4,7 +4,7 @@ const usermodel = require('../model/usermodel');
 const multer = require('multer');
 const upload = multer({ dest: 'upload/' });
 const Postmodel = require('../model/postmodel');
-const Event = require('../model/eventmodel'); // <-- Import Event model
+const Event = require('../model/eventSchema'); // <-- Import Event model
 const placements = require('../model/placementmodel');
 
 
