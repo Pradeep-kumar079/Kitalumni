@@ -233,6 +233,7 @@ app.use('/', reportRoutes);
 app.use('/', viewplacementRoute);
 app.use('/', viewinternshipRoute);
 app.use('/', placementRoutes);
+app.use('/', suggestionRoutes);
 
 
 
